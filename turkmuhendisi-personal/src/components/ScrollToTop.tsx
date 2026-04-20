@@ -1,5 +1,8 @@
 import { useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import * as ReactRouterDom from "react-router-dom";
+
+const routerDom = (Reflect.get(ReactRouterDom as object, "default") ?? ReactRouterDom) as typeof import("react-router-dom");
+const { useLocation } = routerDom;
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();

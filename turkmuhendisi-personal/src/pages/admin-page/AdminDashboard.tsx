@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Save, LogOut, CheckCircle, PlusCircle, PenTool } from 'lucide-react';
+import * as ReactRouterDom from 'react-router-dom';
+import { Save, LogOut, CheckCircle, PenTool } from 'lucide-react';
 import RichTextEditor from '../../components/RichTextEditor';
+import { SEO } from '../../components/SEO';
+
+const routerDom = (Reflect.get(ReactRouterDom as object, 'default') ?? ReactRouterDom) as typeof import('react-router-dom');
+const { useNavigate } = routerDom;
 
 const AdminDashboard = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
-    const [author, setAuthor] = useState('Yönetici');
+    const [author] = useState('Yönetici');
     const [image, setImage] = useState('');
     const [content, setContent] = useState('');
     const [success, setSuccess] = useState(false);
@@ -48,6 +52,12 @@ const AdminDashboard = () => {
 
     return (
         <div className="min-h-screen bg-black text-white pt-24 pb-12 px-4 sm:px-6 relative">
+            <SEO
+                title="İçerik Yönetimi | Türkmühendisi"
+                description="Türkmühendisi içerik yönetim paneli."
+                canonical="/admin/dashboard"
+                noindex
+            />
             {/* Background Gradients */}
             <div className="absolute top-0 inset-x-0 h-96 bg-gradient-to-b from-blue-900/20 to-transparent pointer-events-none"></div>
 

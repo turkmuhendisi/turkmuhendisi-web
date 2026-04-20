@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { MapPin, Mail, Github, Linkedin, FileText, Briefcase, Code, Monitor, Wrench, Lightbulb, Award, Globe, Database, Server } from "lucide-react";
+import { SEO } from "../../components/SEO";
 // import resumePDF from "../../assets/resume.pdf";
 
 interface Education {
@@ -85,6 +86,15 @@ const AboutPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Hakkımda | Türkmühendisi | Samet Berkant Koca"
+        description="Yazılım mühendisliği kariyerim, tecrübelerim, uzmanlık alanlarım ve kullandığım teknolojiler hakkında detaylı bilgiler."
+        canonical="/hakkimda"
+        schemaType="AboutPage"
+        keywords={["samet berkant koca", "yazılım mühendisi", "backend geliştirici", "hakkımda", "turkmuhendisi"]}
+        image="https://avatars.githubusercontent.com/u/74829377?v=4"
+        imageAlt="Samet Berkant Koca profil görseli"
+      />
       {/* Hero Section */}
       <section className="relative py-32 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

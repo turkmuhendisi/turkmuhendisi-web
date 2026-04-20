@@ -1,7 +1,10 @@
 import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import * as ReactRouterDom from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, FileText, Briefcase, User, MonitorPlay } from "lucide-react";
+import { Menu, X, Home, FileText, Briefcase, User } from "lucide-react";
+
+const routerDom = (Reflect.get(ReactRouterDom as object, "default") ?? ReactRouterDom) as typeof import("react-router-dom");
+const { Link, useLocation } = routerDom;
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);

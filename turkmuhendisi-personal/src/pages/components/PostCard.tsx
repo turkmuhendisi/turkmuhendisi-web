@@ -1,5 +1,7 @@
+import * as ReactRouterDom from "react-router-dom";
 
-import { Link } from "react-router-dom";
+const routerDom = (Reflect.get(ReactRouterDom as object, 'default') ?? ReactRouterDom) as typeof import('react-router-dom');
+const { Link } = routerDom;
 
 interface PostCardProps {
   id: string;

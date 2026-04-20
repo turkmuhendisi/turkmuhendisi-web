@@ -1,9 +1,13 @@
 import { useState } from "react";
 import { FaReact } from "react-icons/fa6";
 import { SiSpringboot, SiKotlin } from "react-icons/si";
-import { Link } from "react-router-dom";
+import * as ReactRouterDom from "react-router-dom";
 import { motion } from "framer-motion";
 import { ArrowLeft, ExternalLink, Code, Database, Smartphone, Globe } from "lucide-react";
+import { SEO } from "../../components/SEO";
+
+const routerDom = (Reflect.get(ReactRouterDom as object, 'default') ?? ReactRouterDom) as typeof import('react-router-dom');
+const { Link } = routerDom;
 
 const PresentationPage = () => {
   const [activeTab, setActiveTab] = useState("overview");
@@ -23,6 +27,15 @@ const PresentationPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO
+        title="Eğitim Platformu Projesi | Türkmühendisi"
+        description="React, Kotlin ve Spring Boot ile geliştirilen eğitim platformu projesinin teknik sunumu ve mimari özeti."
+        canonical="/projeler/egitim-platformu"
+        schemaType="TechArticle"
+        keywords={["eğitim platformu", "react", "spring boot", "kotlin", "mikroservis proje"]}
+        image="/post-bg.jpg"
+        imageAlt="Eğitim platformu proje sunumu"
+      />
       {/* Hero Section */}
       <section className="relative py-32 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -66,7 +79,7 @@ const PresentationPage = () => {
               transition={{ duration: 0.6, delay: 0.3 }}
             >
               <Link
-                to="/projects"
+                to="/projeler"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
               >
                 <ArrowLeft className="h-4 w-4" />

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Search, Filter } from "lucide-react";
 import { searchPosts, getCategories } from "../../data/posts";
 import PostCard from "../components/PostCard";
+import { SEO } from "../../components/SEO";
 
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,6 +14,15 @@ const BlogPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Yazılar & Makaleler | Türkmühendisi"
+        description="Teknoloji, mühendislik ve yazılım geliştirme üzerine düşünceler, makaleler ve rehberler."
+        canonical="/yazilar"
+        schemaType="CollectionPage"
+        keywords={["yazılım blogu", "backend yazıları", "mikroservis", "react", "spring boot"]}
+        image="/post-bg.jpg"
+        imageAlt="Türkmühendisi yazılar sayfası kapak görseli"
+      />
       {/* Hero Section */}
       <section className="relative py-32 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

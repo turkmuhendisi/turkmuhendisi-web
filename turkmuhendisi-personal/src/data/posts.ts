@@ -1,7 +1,3 @@
-import etkisepetiLogo from "../assets/etkisepeti-logo.svg";
-import thumbnailEtkisepeti from "../assets/thumbnail-etkisepeti.webp";
-// import postBgImage from "../assets/post-bg.jpg";
-
 export interface Post {
   id: string;
   title: string;
@@ -38,12 +34,12 @@ const posts: Post[] = [
       <h2>Sonuç: Mühendislik Vizyonuyla Büyümek</h2>
       <p>Sonuç olarak, sosyal medya servisleri artık sadece birer aracı panel değil; arkasında ciddi bir DevOps, backend mimarisi ve veri analitiği barındıran teknoloji ürünleridir. <a href="https://etkisepeti.com/instagram-takipci-satin-al" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: underline;">Instagram takipçi satın al</a> gibi rekabetçi servislerde bile güvenilirliği (reliability) merkeze alan bir yaklaşım, dijital varlığın sürdürülebilirliği için kritik öneme sahiptir. Mühendislik disipliniyle inşa edilen sistemler, dijital dünyada her zaman bir adım önde kalacaktır.</p>
     `,
-    image: thumbnailEtkisepeti,
+    image: "/thumbnail-etkisepeti.webp",
     category: "Sosyal Medya & Pazarlama",
     readTime: "5 min read",
     date: "20-04-2026",
     author: "Etki Sepeti",
-    authorImage: etkisepetiLogo
+    authorImage: "/etkisepeti-logo.svg"
   },
   {
     id: "microservices-architecture",

@@ -1,6 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import * as ReactRouterDom from 'react-router-dom';
 import { Mail, Lock, LogIn, AlertCircle } from 'lucide-react';
+import { SEO } from '../../components/SEO';
+
+const routerDom = (Reflect.get(ReactRouterDom as object, 'default') ?? ReactRouterDom) as typeof import('react-router-dom');
+const { useNavigate } = routerDom;
 
 const AdminLogin = () => {
     const [email, setEmail] = useState('');
@@ -21,6 +25,12 @@ const AdminLogin = () => {
 
     return (
         <div className="min-h-screen bg-black text-white flex items-center justify-center px-4 relative pt-24 pb-12">
+            <SEO
+                title="Yönetici Girişi | Türkmühendisi"
+                description="Türkmühendisi yönetim paneli giriş ekranı."
+                canonical="/admin"
+                noindex
+            />
             {/* Background elements */}
             <div className="absolute top-1/4 left-1/4 w-64 h-64 md:w-96 md:h-96 bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"></div>
             <div className="absolute bottom-1/4 right-1/4 w-64 h-64 md:w-96 md:h-96 bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>

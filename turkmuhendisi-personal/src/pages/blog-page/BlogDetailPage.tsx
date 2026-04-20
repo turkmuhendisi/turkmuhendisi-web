@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
-import { Link, useParams } from "react-router-dom";
+import * as ReactRouterDom from "react-router-dom";
 import { ArrowLeft, Clock, Share2, MessageCircle, Heart, Linkedin, Twitter, Facebook, Mail, Send } from "lucide-react";
 import { getPost, getRecentPosts } from "../../data/posts";
+import { SEO } from "../../components/SEO";
+
+const routerDom = (Reflect.get(ReactRouterDom as object, 'default') ?? ReactRouterDom) as typeof import('react-router-dom');
+const { Link, useParams } = routerDom;
 
 const BlogDetailPage = () => {
     const { id } = useParams<{ id: string }>();
@@ -30,6 +34,20 @@ const BlogDetailPage = () => {
 
     return (
         <div className="min-h-screen bg-black text-white pt-24 pb-20">
+            <SEO 
+                title={`${post.title} | Türkmühendisi Blog`}
+                description={post.description}
+                canonical={`/yazilar/${post.id}`}
+                type="article"
+                schemaType="BlogPosting"
+                image={post.image}
+                imageAlt={post.title}
+                authorName={post.author}
+                datePublished={post.date}
+                dateModified={post.date}
+                section={post.category}
+                keywords={[post.title, post.category, post.author, "türkmühendisi blog"]}
+            />
             <div className="max-w-7xl mx-auto px-4 sm:px-6">
 
                 {/* Back Link */}

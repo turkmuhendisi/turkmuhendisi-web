@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Github } from "lucide-react";
 import ProjectCard from "../components/ProjectCard";
+import { SEO } from "../../components/SEO";
 
 interface Project {
   id: string;
@@ -21,7 +22,7 @@ const ProjectPage = () => {
       description: "Spring Boot, React ve Kotlin mobil uygulaması ile geliştirilmiş kapsamlı bir eğitim ve bilgi paylaşım platformu.",
       image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=400&fit=crop",
       tags: ["Spring Boot", "React", "Kotlin", "Microservices", "Docker"],
-      link: "/presentation",
+      link: "/projeler/egitim-platformu",
       github: "https://github.com/turkmuhendisi",
       live: "https://demo.example.com"
     },
@@ -79,6 +80,15 @@ const ProjectPage = () => {
 
   return (
     <div className="min-h-screen bg-black text-white">
+      <SEO 
+        title="Güçlü Projeler ve Çalışmalarım | Türkmühendisi"
+        description="Modern web geliştirme, mikroservis mimarisi ve yenilikçi çözümleri sergileyen projeler topluluğu."
+        canonical="/projeler"
+        schemaType="CollectionPage"
+        keywords={["yazılım projeleri", "portfolio", "mikroservis projeleri", "react projeleri", "spring boot projeleri"]}
+        image="/post-bg.jpg"
+        imageAlt="Türkmühendisi projeler sayfası"
+      />
       {/* Hero Section */}
       <section className="relative py-32 bg-black">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">

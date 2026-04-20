@@ -1,6 +1,8 @@
-
-import { Link } from "react-router-dom";
+import * as ReactRouterDom from "react-router-dom";
 import { ArrowRight, Github, ExternalLink } from "lucide-react";
+
+const routerDom = (Reflect.get(ReactRouterDom as object, 'default') ?? ReactRouterDom) as typeof import('react-router-dom');
+const { Link } = routerDom;
 
 interface ProjectCardProps {
   id: string;

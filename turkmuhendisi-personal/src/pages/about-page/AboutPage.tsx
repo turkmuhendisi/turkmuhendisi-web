@@ -40,8 +40,8 @@ interface PersonalInfo {
 const AboutPage = () => {
   const personalInfo: PersonalInfo = {
     name: "Samet Berkant Koca",
-    title: "More Than a Software Engineer",
-    bio: "Passionate software engineer with 7+ years of experience building scalable solutions. Specialized in microservice architecture, REST API design, and database optimization. Committed to writing clean, maintainable code and staying current with modern technologies.",
+    title: "Bir Yazılım Mühendisinden Daha Fazlası",
+    bio: "Ölçeklenebilir çözümler geliştirme konusunda 7+ yıl deneyime sahip tutkulu yazılım mühendisi. Mikroservis mimarisi, REST API tasarımı ve veritabanı optimizasyonunda uzmanlaştım. Temiz, sürdürülebilir kod yazmaya ve modern teknolojileri güncel takip etmeye kararlıyım.",
     location: "Istanbul, Turkey",
     email: "info@turkmuhendisi.com",
     github: "https://github.com/turkmuhendisi",
@@ -49,23 +49,23 @@ const AboutPage = () => {
     resume: "#",
     education: [
       {
-        degree: "Software Engineering",
+        degree: "Yazılım Mühendisliği",
         school: "FIRAT UNIVERSITY",
         year: "2022 - 2026",
       }
     ],
     experience: [
       {
-        position: "Software Engineer",
+        position: "Yazılım Mühendisi",
         company: "ASRIN GLOBAL",
-        period: "2025 - Present",
-        description: "Developing backend systems with microservice architecture, system design, and RESTful API development."
+        period: "2025 - Günümüz",
+        description: "Mikroservis mimarisi, sistem tasarımı ve RESTful API geliştirme ile backend sistemleri oluşturuyorum."
       },
       {
-        position: "Software Engineer",
+        position: "Yazılım Mühendisi",
         company: "GOBİZ ENERJİ",
-        period: "2025 - Present",
-        description: "Web application development with Spring Boot, database design, and API optimization."
+        period: "2025 - Günümüz",
+        description: "Spring Boot ile web uygulamaları geliştirme, veritabanı tasarımı ve API optimizasyonu."
       }
     ],
     techStack: {
@@ -74,11 +74,11 @@ const AboutPage = () => {
       tools: ["Git & GitHub", "Docker", "Kubernetes", "Postman", "Figma"],
       platforms: ["AWS", "Google Cloud", "Azure", "Linux"],
       approaches: [
-        "Microservice Architecture",
-        "RESTful API Design",
-        "Test-Driven Development",
-        "Agile Methodology",
-        "CI/CD Pipelines"
+        "Mikroservis Mimarisi",
+        "RESTful API Tasarımı",
+        "Test Odaklı Geliştirme",
+        "Agile Metodolojisi",
+        "CI/CD Süreçleri"
       ]
     }
   };
@@ -94,21 +94,12 @@ const AboutPage = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/3 backdrop-blur-2xl rounded-full border border-white/5 shadow-lg mb-8"
-            >
-              <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-              <span className="text-sm font-medium text-gray-300">About</span>
-            </motion.div>
+
 
             {/* Title */}
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
               <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                About
+                Hakkımda
               </span>
             </h1>
 
@@ -208,7 +199,7 @@ const AboutPage = () => {
             >
               <h2 className="text-2xl font-bold text-white mb-8 flex items-center">
                 <Briefcase className="mr-3 text-blue-400" size={28} />
-                Professional Experience
+                Profesyonel Deneyim
               </h2>
               <div className="space-y-8">
                 {personalInfo.experience.map((exp, index) => (
@@ -236,7 +227,7 @@ const AboutPage = () => {
           >
             <h2 className="text-2xl font-bold text-white mb-8 flex items-center">
               <Award className="mr-3 text-blue-400" size={28} />
-              Education
+              Eğitim
             </h2>
             <div className="space-y-6">
               {personalInfo.education.map((edu, index) => (
@@ -259,7 +250,7 @@ const AboutPage = () => {
         >
           <h2 className="text-3xl font-bold text-white mb-12 text-center">
             <Code className="inline mr-3 text-blue-400" size={32} />
-            Technical Skills
+            Teknik Yetenekler
           </h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -297,7 +288,7 @@ const AboutPage = () => {
             <div className="bg-white/3 backdrop-blur-xl rounded-2xl p-6 border border-white/5 shadow-lg">
               <div className="flex items-center mb-4">
                 <Wrench className="text-emerald-400 mr-3" size={24} />
-                <h3 className="text-xl font-bold text-white">Tools</h3>
+                <h3 className="text-xl font-bold text-white">Araçlar</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {personalInfo.techStack.tools.map((tool, index) => (
@@ -312,7 +303,7 @@ const AboutPage = () => {
             <div className="bg-white/3 backdrop-blur-xl rounded-2xl p-6 border border-white/5 shadow-lg">
               <div className="flex items-center mb-4">
                 <Globe className="text-amber-400 mr-3" size={24} />
-                <h3 className="text-xl font-bold text-white">Platforms</h3>
+                <h3 className="text-xl font-bold text-white">Platformlar</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {personalInfo.techStack.platforms.map((platform, index) => (
@@ -327,7 +318,7 @@ const AboutPage = () => {
             <div className="bg-white/3 backdrop-blur-xl rounded-2xl p-6 border border-white/5 shadow-lg">
               <div className="flex items-center mb-4">
                 <Database className="text-red-400 mr-3" size={24} />
-                <h3 className="text-xl font-bold text-white">Database</h3>
+                <h3 className="text-xl font-bold text-white">Veritabanı</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 <span className="px-3 py-2 bg-red-500/20 text-red-300 rounded-xl text-sm font-medium border border-red-500/30">
@@ -346,7 +337,7 @@ const AboutPage = () => {
             <div className="bg-white/3 backdrop-blur-xl rounded-2xl p-6 border border-white/5 shadow-lg md:col-span-2 lg:col-span-1">
               <div className="flex items-center mb-4">
                 <Lightbulb className="text-indigo-400 mr-3" size={24} />
-                <h3 className="text-xl font-bold text-white">Approaches</h3>
+                <h3 className="text-xl font-bold text-white">Yaklaşımlar</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {personalInfo.techStack.approaches.map((approach, index) => (

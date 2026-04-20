@@ -14,7 +14,7 @@ interface PostCardProps {
 const PostCard = ({ id, title, description, image, category, readTime, date }: PostCardProps) => {
   return (
     <div className="group h-full">
-      <Link to={`/blog/${id}`} className="block h-full">
+      <Link to={`/yazilar/${id}`} className="block h-full">
         <div className="h-full bg-white/3 backdrop-blur-2xl rounded-3xl border border-white/5 shadow-lg overflow-hidden flex flex-col">
           {/* Image */}
           <div className="relative h-48 overflow-hidden flex-shrink-0">

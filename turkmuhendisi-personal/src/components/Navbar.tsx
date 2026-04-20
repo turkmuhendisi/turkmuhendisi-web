@@ -1,17 +1,17 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Home, FileText, Briefcase, User } from "lucide-react";
+import { Menu, X, Home, FileText, Briefcase, User, MonitorPlay } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
-    { name: "Home", path: "/", icon: Home },
-    { name: "Blog", path: "/blog", icon: FileText },
-    { name: "Projects", path: "/projects", icon: Briefcase },
-    { name: "About", path: "/about", icon: User },
+    { name: "Anasayfa", path: "/", icon: Home },
+    { name: "Yazılar", path: "/yazilar", icon: FileText },
+    { name: "Projeler", path: "/projeler", icon: Briefcase },
+    { name: "Hakkımda", path: "/hakkimda", icon: User },
   ];
 
   const isActive = (path: string) => {

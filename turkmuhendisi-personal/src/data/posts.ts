@@ -1,3 +1,5 @@
+import etkisepetiLogo from "../assets/etkisepeti-logo.svg";
+import thumbnailEtkisepeti from "../assets/thumbnail-etkisepeti.webp";
 // import postBgImage from "../assets/post-bg.jpg";
 
 export interface Post {
@@ -10,13 +12,43 @@ export interface Post {
   readTime: string;
   date: string;
   author: string;
+  authorImage?: string;
 }
 
 const posts: Post[] = [
   {
+    id: "modern-yazilim-mimarisinde-guvenilirlik",
+    title: "Modern Yazılım Mimarisinde Güvenilirlik: Sosyal Medya Servislerinde Mühendislik Yaklaşımı",
+    description: "Ölçeklenebilirlik, düşük gecikme süresi ve yüksek erişilebilirlik gereksinimleri ile Etkisepeti projesinin teknoloji ve güvenilirlik odaklı yaklaşımları.",
+    content: `
+      <h2>1. Dağıtık Sistemler ve Mikroservis Yönetimi</h2>
+      <p>Geleneksel SMM panellerinin aksine, modern bir büyüme platformu saniyede binlerce asenkron görevi (task) yönetmek zorundadır. Etkisepeti, altyapısında NestJS ve Kotlin gibi performans odaklı teknolojileri kullanarak mikroservis mimarisiyle inşa edilmiştir. Bu mimari, sistemin bir bölümünde (örneğin ödeme servisi) oluşabilecek bir darboğazın, sipariş teslimat veya kredi yönetim sistemini etkilemesini engeller.</p>
+
+      <h2>2. Reliability (Güvenilirlik) ve p95 Latency Optimizasyonu</h2>
+      <p>Bir mühendis için güvenilirlik, sadece sistemin "çalışıyor" olması değil, yük altında ne kadar stabil kaldığıdır. Platformun API uç noktalarında p95 gecikme sürelerini (latency) 150ms'nin altında tutmak için ciddi bir optimizasyon süreci yürütülüyor. Nginx konfigürasyonlarından Docker-compose tabanlı konteynerizasyon stratejilerine kadar her katman, hata toleransı (fault tolerance) üzerine kurgulanmıştır.</p>
+
+      <p>Sektörde sıkça rastlanan "bakiye silinmesi" veya "sipariş takılması" gibi durumlar, Etkisepeti'nin kurumsal <strong>Hizmet Kredisi</strong> sistemi ve ACID prensiplerine bağlı veritabanı yönetimi ile minimize edilmiştir. Bu, kullanıcıya sadece bir servis değil, bir "yazılım taahhüdü" (SLA) sunulduğu anlamına gelir.</p>
+
+      <h2>3. Algoritma Dostu Teslimat: Akıllı Kademeli Gönderim</h2>
+      <p>Sosyal medya platformlarının (Instagram, TikTok vb.) anti-spam algoritmaları, ani veri girişlerini kolayca tespit edebilmektedir. Mühendislik ekibi, bu platformların çalışma mantığını tersine mühendislik (reverse engineering) ile analiz ederek "Akıllı Kademeli Teslimat" (Drip-feed) teknolojisini geliştirmiştir. Bu teknoloji, verinin platformlara doğal bir büyüme eğrisini taklit edecek şekilde, belirli zaman dilimlerine yayılarak (stochastic process) enjekte edilmesini sağlar.</p>
+
+      <h2>4. Güvenlik ve Legal Entity Standartları</h2>
+      <p>Yazılım dünyasında güvenlik, sadece şifreleme değil aynı zamanda yasal bir sorumluluktur. <a href="https://etkisepeti.com/" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: underline;">Etkisepeti</a>, Türkiye merkezli bir legal entity (yasal tüzel kişilik) olarak faaliyet göstererek, sektördeki muhatapsız yapıların aksine şeffaf bir operasyon yürütmektedir. 3D Secure ödeme katmanları ve şifresiz işlem protokolleri, "Privacy by Design" (tasarım yoluyla gizlilik) ilkesinin bir sonucudur.</p>
+
+      <h2>Sonuç: Mühendislik Vizyonuyla Büyümek</h2>
+      <p>Sonuç olarak, sosyal medya servisleri artık sadece birer aracı panel değil; arkasında ciddi bir DevOps, backend mimarisi ve veri analitiği barındıran teknoloji ürünleridir. <a href="https://etkisepeti.com/instagram-takipci-satin-al" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: underline;">Instagram takipçi satın al</a> gibi rekabetçi servislerde bile güvenilirliği (reliability) merkeze alan bir yaklaşım, dijital varlığın sürdürülebilirliği için kritik öneme sahiptir. Mühendislik disipliniyle inşa edilen sistemler, dijital dünyada her zaman bir adım önde kalacaktır.</p>
+    `,
+    image: thumbnailEtkisepeti,
+    category: "Sosyal Medya & Pazarlama",
+    readTime: "5 min read",
+    date: "20-04-2026",
+    author: "Etki Sepeti",
+    authorImage: etkisepetiLogo
+  },
+  {
     id: "microservices-architecture",
-    title: "Microservices Architecture: Best Practices and Implementation",
-    description: "A comprehensive guide to designing and implementing microservices architecture with real-world examples and best practices.",
+    title: "Mikroservis Mimarisi: En İyi Uygulamalar ve Kurulum",
+    description: "Gerçek dünya örnekleri ve en iyi uygulamalarla mikroservis mimarisini tasarlama ve uygulama rehberi.",
     content: `
       <h2>Introduction to Microservices</h2>
       <p>Microservices architecture has become the go-to solution for building scalable, maintainable applications. This architectural style structures an application as a collection of loosely coupled, independently deployable services.</p>
@@ -89,15 +121,15 @@ const posts: Post[] = [
       <p>Microservices architecture is not a silver bullet, but when implemented correctly, it can provide significant benefits for large, complex applications. The key is to start small, learn from each iteration, and gradually evolve your architecture.</p>
     `,
     image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=400&fit=crop",
-    category: "Architecture",
+    category: "Mimari",
     readTime: "8 min read",
-    date: "2024-01-15",
+    date: "18-04-2026",
     author: "Samet Koca"
   },
   {
     id: "spring-boot-best-practices",
-    title: "Spring Boot Best Practices for Production Applications",
-    description: "Learn the essential best practices for building robust, scalable Spring Boot applications that are ready for production deployment.",
+    title: "Üretim Ortamı İçin Spring Boot En İyi Uygulamaları",
+    description: "Üretim dağıtımına hazır, sağlam, ölçeklenebilir Spring Boot uygulamaları geliştirmek için temel en iyi uygulamaları öğrenin.",
     content: `
       <h2>Spring Boot Production Readiness</h2>
       <p>Building a Spring Boot application is one thing, but making it production-ready requires careful attention to many aspects. This guide covers the essential best practices that every Spring Boot developer should know.</p>
@@ -236,13 +268,13 @@ public class GlobalExceptionHandler {
     image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800&h=400&fit=crop",
     category: "Backend",
     readTime: "12 min read",
-    date: "2024-01-10",
+    date: "15-04-2026",
     author: "Samet Koca"
   },
   {
     id: "react-performance-optimization",
-    title: "React Performance Optimization: Advanced Techniques",
-    description: "Master advanced React performance optimization techniques including memoization, code splitting, and virtual scrolling.",
+    title: "React Performans Optimizasyonu: Gelişmiş Teknikler",
+    description: "Memoization, kod bölme ve sanal kaydırma gibi gelişmiş React performans optimizasyon tekniklerinde uzmanlaşın.",
     content: `
       <h2>React Performance Optimization</h2>
       <p>Performance is crucial for modern web applications. This guide covers advanced techniques to optimize React applications for better user experience and faster load times.</p>
@@ -467,13 +499,13 @@ const Component = () => (
     image: "https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800&h=400&fit=crop",
     category: "Frontend",
     readTime: "10 min read",
-    date: "2024-01-05",
+    date: "10-04-2026",
     author: "Samet Koca"
   },
   {
     id: "docker-production-deployment",
-    title: "Docker for Production: Best Practices and Deployment Strategies",
-    description: "Learn how to containerize applications effectively and deploy them to production with Docker best practices.",
+    title: "Üretim İçin Docker: En İyi Uygulamalar ve Dağıtım Stratejileri",
+    description: "Uygulamaları Docker en iyi uygulamalarıyla nasıl etkili bir şekilde konteynerleştireceğinizi ve üretim ortamına dağıtacağınızı öğrenin.",
     content: `
       <h2>Docker Production Deployment</h2>
       <p>Docker has revolutionized how we deploy applications. This guide covers best practices for containerizing applications and deploying them to production environments.</p>
@@ -699,13 +731,13 @@ jobs:
     image: "https://images.unsplash.com/photo-1605745341112-85968b19335b?w=800&h=400&fit=crop",
     category: "DevOps",
     readTime: "15 min read",
-    date: "2023-12-28",
+    date: "05-04-2026",
     author: "Samet Koca"
   },
   {
     id: "api-design-principles",
-    title: "RESTful API Design: Principles and Best Practices",
-    description: "Master the art of designing clean, scalable RESTful APIs that developers love to use and maintain.",
+    title: "RESTful API Tasarımı: Prensipler ve En İyi Uygulamalar",
+    description: "Geliştiricilerin kullanmaktan ve sürdürmekten keyif aldığı temiz, ölçeklenebilir RESTful API'ler tasarlama sanatında uzmanlaşın.",
     content: `
       <h2>RESTful API Design Principles</h2>
       <p>Designing a good API is crucial for the success of any application. This guide covers the fundamental principles and best practices for creating RESTful APIs that are intuitive, scalable, and maintainable.</p>
@@ -937,7 +969,7 @@ paths:
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=400&fit=crop",
     category: "Backend",
     readTime: "14 min read",
-    date: "2023-12-20",
+    date: "01-04-2026",
     author: "Samet Koca"
   }
 ];
@@ -952,7 +984,7 @@ export const getPost = (id: string): Post | undefined => {
 
 export const searchPosts = (searchTerm: string, category: string): Post[] => {
   let filteredPosts = posts;
-  
+
   if (searchTerm) {
     filteredPosts = filteredPosts.filter(post =>
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -960,17 +992,17 @@ export const searchPosts = (searchTerm: string, category: string): Post[] => {
       post.content.toLowerCase().includes(searchTerm.toLowerCase())
     );
   }
-  
-  if (category && category !== "All") {
+
+  if (category && category !== "Tümü") {
     filteredPosts = filteredPosts.filter(post => post.category === category);
   }
-  
+
   return filteredPosts;
 };
 
 export const getCategories = (): string[] => {
   const categories = posts.map(post => post.category);
-  return ["All", ...Array.from(new Set(categories))];
+  return ["Tümü", ...Array.from(new Set(categories))];
 };
 
 export const getRecentPosts = (limit: number): Post[] => {

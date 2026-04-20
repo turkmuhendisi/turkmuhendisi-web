@@ -6,7 +6,7 @@ import PostCard from "../components/PostCard";
 
 const BlogPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("Tümü");
   const categories = getCategories();
 
   const filteredPosts = searchPosts(searchTerm, selectedCategory);
@@ -22,27 +22,18 @@ const BlogPage = () => {
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 backdrop-blur-sm rounded-full border border-white/10 mb-8"
-            >
-              <div className="w-2 h-2 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full"></div>
-              <span className="text-sm font-medium text-gray-300">Blog</span>
-            </motion.div>
+
 
             {/* Title */}
             <h1 className="text-5xl md:text-7xl font-bold tracking-tight mb-8">
               <span className="bg-gradient-to-r from-white via-gray-200 to-gray-400 bg-clip-text text-transparent">
-                Articles
+                Yazılar
               </span>
             </h1>
 
             {/* Description */}
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              Exploring technology, engineering, and software development through thoughtful writing
+              Teknoloji, mühendislik ve yazılım geliştirme üzerine düşünceler ve makaleler
             </p>
           </motion.div>
         </div>
@@ -63,7 +54,7 @@ const BlogPage = () => {
                 <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
                 <input
                   type="text"
-                  placeholder="Search articles..."
+                  placeholder="Yazılarda ara..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   className="w-full pl-12 pr-4 py-4 bg-white/5 border border-white/10 rounded-2xl text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300"
@@ -125,7 +116,7 @@ const BlogPage = () => {
               className="text-center py-16"
             >
               <div className="text-gray-400 text-lg">
-                No articles found matching your criteria.
+                Kriterlerinize uygun yazı bulunamadı.
               </div>
             </motion.div>
           )}

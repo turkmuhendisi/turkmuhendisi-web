@@ -4,6 +4,10 @@ export interface Post {
   description: string;
   content: string;
   image: string;
+  ogImage?: string;
+  ogImageType?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   category: string;
   readTime: string;
   date: string;
@@ -35,6 +39,10 @@ const posts: Post[] = [
       <p>Sonuç olarak, sosyal medya servisleri artık sadece birer aracı panel değil; arkasında ciddi bir DevOps, backend mimarisi ve veri analitiği barındıran teknoloji ürünleridir. <a href="https://etkisepeti.com/instagram-takipci-satin-al" target="_blank" rel="noopener noreferrer" style="color: #60a5fa; text-decoration: underline;">Instagram takipçi satın al</a> gibi rekabetçi servislerde bile güvenilirliği (reliability) merkeze alan bir yaklaşım, dijital varlığın sürdürülebilirliği için kritik öneme sahiptir. Mühendislik disipliniyle inşa edilen sistemler, dijital dünyada her zaman bir adım önde kalacaktır.</p>
     `,
     image: "/thumbnail-etkisepeti.webp",
+    ogImage: "/thumbnail-etkisepeti.jpg?v=20260421",
+    ogImageType: "image/jpeg",
+    ogImageWidth: 1200,
+    ogImageHeight: 630,
     category: "Sosyal Medya & Pazarlama",
     readTime: "5 min read",
     date: "20-04-2026",

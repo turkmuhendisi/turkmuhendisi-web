@@ -40,8 +40,11 @@ const BlogDetailPage = () => {
                 canonical={`/yazilar/${post.id}`}
                 type="article"
                 schemaType="BlogPosting"
-                image={post.image}
+                image={post.ogImage || post.image}
                 imageAlt={post.title}
+                imageType={post.ogImageType}
+                imageWidth={post.ogImageWidth}
+                imageHeight={post.ogImageHeight}
                 authorName={post.author}
                 datePublished={post.date}
                 dateModified={post.date}

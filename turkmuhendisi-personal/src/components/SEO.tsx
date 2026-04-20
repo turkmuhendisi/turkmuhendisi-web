@@ -11,6 +11,9 @@ interface SEOProps {
   schemaType?: string;
   image?: string;
   imageAlt?: string;
+  imageType?: string;
+  imageWidth?: number;
+  imageHeight?: number;
   authorName?: string;
   datePublished?: string;
   dateModified?: string;
@@ -62,6 +65,28 @@ const toAbsoluteUrl = (value?: string) => {
   } catch {
     return `${SITE_URL}${DEFAULT_IMAGE}`;
   }
+};
+
+const inferImageType = (value?: string) => {
+  if (!value) {
+    return undefined;
+  }
+
+  const pathname = new URL(toAbsoluteUrl(value)).pathname.toLowerCase();
+
+  if (pathname.endsWith('.jpg') || pathname.endsWith('.jpeg')) {
+    return 'image/jpeg';
+  }
+
+  if (pathname.endsWith('.png')) {
+    return 'image/png';
+  }
+
+  if (pathname.endsWith('.webp')) {
+    return 'image/webp';
+  }
+
+  return undefined;
 };
 
 const toIsoDate = (value?: string) => {
@@ -172,6 +197,9 @@ export const SEO = ({
   schemaType,
   image,
   imageAlt,
+  imageType,
+  imageWidth,
+  imageHeight,
   authorName,
   datePublished,
   dateModified,
@@ -180,6 +208,7 @@ export const SEO = ({
 }: SEOProps) => {
   const currentUrl = toAbsoluteUrl(canonical);
   const imageUrl = toAbsoluteUrl(image);
+  const resolvedImageType = imageType || inferImageType(image);
   const isoPublishedDate = toIsoDate(datePublished);
   const isoModifiedDate = toIsoDate(dateModified || datePublished);
   const robotsContent = noindex
@@ -225,7 +254,17 @@ export const SEO = ({
       <meta property="og:type" content={type} />
       <meta property="og:url" content={currentUrl} />
       <meta property="og:image" content={imageUrl} />
+      <meta property="og:image:secure_url" content={imageUrl} />
       <meta property="og:image:alt" content={imageAlt || title} />
+      {resolvedImageType && (
+        <meta property="og:image:type" content={resolvedImageType} />
+      )}
+      {imageWidth && (
+        <meta property="og:image:width" content={String(imageWidth)} />
+      )}
+      {imageHeight && (
+        <meta property="og:image:height" content={String(imageHeight)} />
+      )}
 
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />

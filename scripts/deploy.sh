@@ -38,11 +38,22 @@ $COMPOSE build --pull
 echo "==> Veritabanı migration"
 $COMPOSE run --rm migrate
 
-echo "==> Servisleri başlat"
-$COMPOSE up -d --remove-orphans
+echo "==> Servisleri başlat (postgres, redis, minio, cdn, app)"
+$COMPOSE up -d postgres redis minio minio-init cdn app --remove-orphans
+
+echo "==> Servislerin ayağa kalkması bekleniyor (30s)..."
+sleep 30
 
 echo "==> Durum"
-$COMPOSE ps
+$COMPOSE ps -a
+
+if ! curl -sf -m 10 http://127.0.0.1:3020/ >/dev/null 2>&1; then
+  echo ""
+  echo "UYARI: App henüz yanıt vermiyor. Loglar:"
+  $COMPOSE logs --tail=40 app
+  echo ""
+  echo "Teşhis için: ./scripts/deploy-status.sh"
+fi
 
 if [[ -f /etc/nginx/conf.d/turkmuhendisi.conf ]]; then
   echo "==> Host nginx yeniden yükleniyor"

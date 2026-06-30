@@ -55,9 +55,11 @@ if ! curl -sf -m 10 http://127.0.0.1:3020/ >/dev/null 2>&1; then
   echo "Teşhis için: ./scripts/deploy-status.sh"
 fi
 
-if [[ -f /etc/nginx/conf.d/turkmuhendisi.conf ]]; then
-  echo "==> Host nginx yeniden yükleniyor"
-  sudo nginx -t && sudo systemctl reload nginx
+echo "==> Host nginx SSL config kurulumu"
+if [[ -f /etc/letsencrypt/live/turkmuhendisi.com/fullchain.pem ]]; then
+  sudo "$ROOT/scripts/nginx-host-install.sh" full
+else
+  echo "UYARI: SSL sertifikası yok, nginx config atlandı."
 fi
 
 echo ""

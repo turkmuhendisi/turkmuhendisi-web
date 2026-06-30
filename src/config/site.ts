@@ -1,10 +1,14 @@
+import { getCdnBaseUrl } from "@/src/config/env";
+
 export const AUTH_COOKIE_NAME = "adminToken";
 
 export const DOMAIN_CONFIG = {
   web: process.env.NEXT_PUBLIC_WEB_URL ?? "https://turkmuhendisi.com",
   panel: process.env.NEXT_PUBLIC_PANEL_URL ?? "https://panel.turkmuhendisi.com",
   api: process.env.NEXT_PUBLIC_API_URL ?? "https://api.turkmuhendisi.com",
-  cdn: process.env.NEXT_PUBLIC_CDN_URL ?? "https://cdn.turkmuhendisi.com",
+  get cdn() {
+    return getCdnBaseUrl();
+  },
 } as const;
 
 export const API_ENDPOINTS = {

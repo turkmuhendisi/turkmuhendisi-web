@@ -1,5 +1,5 @@
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-import { env, isInfrastructureEnabled } from "@/src/config/env";
+import { env, getCdnBaseUrl, isInfrastructureEnabled } from "@/src/config/env";
 
 let s3Client: S3Client | null = null;
 
@@ -36,10 +36,11 @@ export async function uploadObject(
       Key: key,
       Body: body,
       ContentType: contentType,
+      CacheControl: "public, max-age=31536000, immutable",
     }),
   );
 
-  return `${env.minio.publicUrl}/${key}`;
+  return `${getCdnBaseUrl()}/${key}`;
 }
 
 export function buildUploadKey(filename: string): string {

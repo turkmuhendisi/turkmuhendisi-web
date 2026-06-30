@@ -1,0 +1,14 @@
+node_modules
+.next
+out
+dist
+.git
+.gitignore
+.env*
+!.env.production.example
+.DS_Store
+*.md
+.idea
+turkmuhendisi-personal
+infra/certbot/conf
+npm-debug.log*

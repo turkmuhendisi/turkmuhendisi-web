@@ -9,6 +9,20 @@ export function isInfrastructureEnabled(): boolean {
   return Boolean(process.env.DATABASE_URL);
 }
 
+const DEFAULT_CDN_URL = "https://cdn.turkmuhendisi.com";
+
+export function getCdnBaseUrl(): string {
+  const url =
+    process.env.NEXT_PUBLIC_CDN_URL ??
+    (typeof window === "undefined" ? process.env.MINIO_PUBLIC_URL : undefined) ??
+    DEFAULT_CDN_URL;
+  return url.replace(/\/$/, "");
+}
+
+export function getDefaultUploadUrl(): string {
+  return `${getCdnBaseUrl()}/uploads/`;
+}
+
 export const env = {
   get redisUrl() {
     return process.env.REDIS_URL ?? "redis://localhost:6379";
@@ -33,7 +47,7 @@ export const env = {
       return process.env.MINIO_USE_SSL === "true";
     },
     get publicUrl() {
-      return process.env.MINIO_PUBLIC_URL ?? "http://localhost:9000/turkmuhendisi";
+      return getCdnBaseUrl();
     },
   },
   admin: {
@@ -51,11 +65,4 @@ export const env = {
 
 export function getDatabaseUrl(): string {
   return required("DATABASE_URL", process.env.DATABASE_URL);
-}
-
-export function getDefaultUploadUrl(): string {
-  if (isInfrastructureEnabled()) {
-    return `${env.minio.publicUrl}/uploads/`;
-  }
-  return `${process.env.NEXT_PUBLIC_CDN_URL ?? "https://cdn.turkmuhendisi.com"}/uploads/`;
 }

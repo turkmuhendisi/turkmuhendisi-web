@@ -13,6 +13,9 @@
     "docker:up": "docker compose up -d",
     "docker:down": "docker compose down",
     "docker:logs": "docker compose logs -f",
+    "docker:prod": "docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
+    "cert:init": "bash scripts/cert-init.sh",
+    "deploy": "bash scripts/deploy.sh",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "tsx scripts/db-setup.ts",
     "setup": "docker compose up -d && sleep 8 && npm run db:migrate"

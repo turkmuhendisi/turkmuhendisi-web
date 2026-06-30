@@ -1,0 +1,16 @@
+[
+  {
+    "AllowedOrigins": [
+      "https://turkmuhendisi.com",
+      "https://www.turkmuhendisi.com",
+      "https://panel.turkmuhendisi.com",
+      "https://cdn.turkmuhendisi.com",
+      "http://localhost:3000",
+      "http://localhost:9080"
+    ],
+    "AllowedMethods": ["GET", "HEAD"],
+    "AllowedHeaders": ["*"],
+    "ExposeHeaders": ["ETag", "Content-Length", "Content-Type", "Last-Modified"],
+    "MaxAgeSeconds": 86400
+  }
+]

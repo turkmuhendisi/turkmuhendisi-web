@@ -5,6 +5,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "standalone",
   poweredByHeader: false,
   compress: true,
   serverExternalPackages: ["postgres", "ioredis", "bcryptjs"],
@@ -15,6 +16,7 @@ const nextConfig = {
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       { protocol: "https", hostname: "cdn.turkmuhendisi.com" },
+      { protocol: "http", hostname: "localhost", port: "9080", pathname: "/**" },
       { protocol: "http", hostname: "localhost", port: "9000", pathname: "/turkmuhendisi/**" },
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "avatars.githubusercontent.com" },

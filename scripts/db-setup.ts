@@ -11,6 +11,7 @@ const { migrate } = await import("drizzle-orm/postgres-js/migrator");
 const { default: postgres } = await import("postgres");
 const { drizzle } = await import("drizzle-orm/postgres-js");
 const { getDatabaseUrl } = await import("../src/config/env");
+const { closeDb } = await import("../src/db");
 const { ensureDefaultAdmin } = await import("../src/repositories/auth.repository");
 
 async function main() {
@@ -21,10 +22,14 @@ async function main() {
   await ensureDefaultAdmin();
 
   console.log("Migration ve seed tamamlandi.");
-  await client.end();
+
+  await closeDb();
+  await client.end({ timeout: 5 });
 }
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });

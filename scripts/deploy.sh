@@ -36,7 +36,7 @@ echo "==> Docker image build"
 $COMPOSE build --pull
 
 echo "==> Veritabanı migration"
-$COMPOSE run --rm migrate
+$COMPOSE run --rm --no-TTY migrate
 
 echo "==> Servisleri başlat (postgres, redis, minio, cdn, app)"
 $COMPOSE up -d postgres redis minio minio-init cdn app --remove-orphans

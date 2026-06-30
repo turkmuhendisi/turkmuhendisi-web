@@ -1,0 +1,47 @@
+{
+  "name": "turkmuhendisi-next",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "node -e \"console.log('Next.js dev sunucusu başlatılıyor, lütfen bekleyin...')\" && next dev",
+    "dev:clean": "rm -rf .next && npm run dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "lint": "tsc --noEmit",
+    "docker:up": "docker compose up -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx scripts/db-setup.ts",
+    "setup": "docker compose up -d && sleep 8 && npm run db:migrate"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "3.888.0",
+    "@splinetool/react-spline": "^4.1.0",
+    "@tailwindcss/postcss": "4.2.3",
+    "@tailwindcss/typography": "0.5.19",
+    "bcryptjs": "3.0.2",
+    "drizzle-orm": "0.44.5",
+    "framer-motion": "12.38.0",
+    "ioredis": "5.8.0",
+    "lucide-react": "1.8.0",
+    "next": "16.2.4",
+    "postgres": "3.4.7",
+    "react": "19.2.5",
+    "react-dom": "19.2.5",
+    "react-icons": "5.6.0",
+    "tailwindcss": "4.2.3"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "2.4.6",
+    "@types/node": "25.6.0",
+    "@types/react": "19.2.14",
+    "@types/react-dom": "19.2.3",
+    "dotenv": "17.2.2",
+    "drizzle-kit": "0.31.4",
+    "tsx": "4.20.5",
+    "typescript": "6.0.3"
+  }
+}

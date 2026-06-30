@@ -1,0 +1,11 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+html {
+  background: #000;
+}
+
+body {
+  margin: 0;
+  background: #000;
+}

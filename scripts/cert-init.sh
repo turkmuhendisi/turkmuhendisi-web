@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# Kullanım: ./cert-init   (npm gerekmez, sadece Docker)
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"

@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
+# Kullanım: ./deploy   (npm gerekmez, sadece Docker)
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-COMPOSE="docker compose -f docker-compose.yml -f docker-compose.prod.yml"
+if docker compose version &>/dev/null; then
+  COMPOSE="docker compose -f docker-compose.yml -f docker-compose.prod.yml"
+elif command -v docker-compose &>/dev/null; then
+  COMPOSE="docker-compose -f docker-compose.yml -f docker-compose.prod.yml"
+else
+  echo "Hata: docker compose bulunamadı."
+  exit 1
+fi
 
 if [[ ! -f .env ]]; then
   echo "Hata: .env dosyası bulunamadı."
@@ -16,7 +24,7 @@ fi
 if [[ ! -f "$ROOT/infra/certbot/conf/live/turkmuhendisi.com/fullchain.pem" ]]; then
   echo "Hata: SSL sertifikası bulunamadı."
   echo "  Önce DNS kayıtlarını sunucuya yönlendirin, sonra:"
-  echo "  npm run cert:init"
+  echo "  ./cert-init"
   exit 1
 fi
 

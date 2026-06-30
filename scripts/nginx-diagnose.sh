@@ -28,12 +28,14 @@ echo "==> App doğrudan (127.0.0.1:3020)"
 APP_CODE="$(curl -sS -o /dev/null -w "%{http_code}" -m 5 http://127.0.0.1:3020/ 2>/dev/null || echo "000")"
 echo "  HTTP $APP_CODE"
 
+BIND_IP="$(curl -4 -s --max-time 5 ifconfig.me 2>/dev/null || echo "187.127.83.10")"
+
 echo ""
-echo "==> Nginx üzerinden turkmuhendisi.com (localhost)"
-NGINX_CODE="$(curl -sS -o /dev/null -w "%{http_code}" -m 5 -k --resolve turkmuhendisi.com:443:127.0.0.1 https://turkmuhendisi.com/ 2>/dev/null || echo "000")"
+echo "==> Nginx üzerinden turkmuhendisi.com ($BIND_IP:443)"
+NGINX_CODE="$(curl -sS -o /dev/null -w "%{http_code}" -m 5 -k --resolve "turkmuhendisi.com:443:${BIND_IP}" "https://turkmuhendisi.com/" 2>/dev/null || echo "000")"
 echo "  HTTPS $NGINX_CODE"
 
-REDIRECT="$(curl -sS -o /dev/null -w "%{redirect_url}" -m 5 -k --resolve turkmuhendisi.com:443:127.0.0.1 https://turkmuhendisi.com/ 2>/dev/null || true)"
+REDIRECT="$(curl -sS -o /dev/null -w "%{redirect_url}" -m 5 -k --resolve "turkmuhendisi.com:443:${BIND_IP}" "https://turkmuhendisi.com/" 2>/dev/null || true)"
 if [[ -n "$REDIRECT" ]]; then
   echo "  Yönlendirme: $REDIRECT"
 fi

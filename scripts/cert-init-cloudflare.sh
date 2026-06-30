@@ -16,12 +16,12 @@ fi
 if [[ -z "${CLOUDFLARE_API_TOKEN:-}" ]]; then
   echo "Hata: CLOUDFLARE_API_TOKEN .env dosyasında tanımlı değil."
   echo ""
-  echo "Cloudflare → My Profile → API Tokens → Create Token"
-  echo "  Template: Edit zone DNS"
-  echo "  Zone: turkmuhendisi.com"
+  echo "Cloudflare → API Tokens → Create Custom Token"
+  echo "  İzin 1: Zone → Zone → Read"
+  echo "  İzin 2: Zone → DNS → Edit"
+  echo "  Zone Resources: Include → turkmuhendisi.com"
   echo ""
-  echo ".env dosyasına ekleyin:"
-  echo "  CLOUDFLARE_API_TOKEN=your_token_here"
+  echo "Test: ./scripts/cert-test-cloudflare.sh"
   exit 1
 fi
 
@@ -50,8 +50,18 @@ if [[ -f /etc/letsencrypt/live/turkmuhendisi.com/fullchain.pem ]]; then
   exit 0
 fi
 
+echo "==> Token testi"
+if ! bash "$ROOT/scripts/cert-test-cloudflare.sh"; then
+  rm -f "$CF_CRED"
+  exit 1
+fi
+
+PROPAGATION_SECONDS="${CF_PROPAGATION_SECONDS:-120}"
+
+echo ""
 echo "==> Cloudflare DNS-01 ile sertifika alınıyor"
 echo "    Domain'ler: ${DOMAINS[*]}"
+echo "    DNS yayılım bekleme: ${PROPAGATION_SECONDS}s"
 
 sudo mkdir -p /etc/letsencrypt
 
@@ -61,6 +71,7 @@ docker run --rm \
   certbot/dns-cloudflare certonly \
   --dns-cloudflare \
   --dns-cloudflare-credentials /cloudflare.ini \
+  --dns-cloudflare-propagation-seconds "$PROPAGATION_SECONDS" \
   "${DOMAIN_ARGS[@]}" \
   --agree-tos \
   --register-unsafely-without-email \

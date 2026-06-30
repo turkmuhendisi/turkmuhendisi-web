@@ -1,5 +1,5 @@
-# Üretim ortamı
-# Kullanım: npm run deploy
+# Üretim — paylaşımlı sunucu (host nginx 80/443, Docker sadece localhost portları)
+# Kullanım: ./deploy
 
 services:
   app:
@@ -21,8 +21,8 @@ services:
       REDIS_URL: redis://redis:6379
       MINIO_ENDPOINT: minio
       MINIO_PORT: 9000
-    expose:
-      - "3000"
+    ports:
+      - "127.0.0.1:${APP_PORT:-3020}:3000"
     depends_on:
       migrate:
         condition: service_completed_successfully
@@ -48,26 +48,20 @@ services:
         condition: service_healthy
     restart: "no"
 
-  nginx:
+  cdn:
     image: nginx:alpine
-    container_name: turkmuhendisi-nginx
+    container_name: turkmuhendisi-cdn
     restart: unless-stopped
-    ports:
-      - "80:80"
-      - "443:443"
+    ports: !override
+      - "127.0.0.1:${CDN_PORT:-3021}:80"
     volumes:
-      - ./infra/nginx/production.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./infra/certbot/conf:/etc/letsencrypt:ro
-      - ./infra/certbot/www:/var/www/certbot:ro
+      - ./infra/nginx/cdn.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - app
-      - minio
-    healthcheck:
-      test: ["CMD", "wget", "-qO-", "http://localhost/health"]
-      interval: 30s
-      timeout: 5s
-      retries: 3
-      start_period: 10s
+      minio:
+        condition: service_healthy
+
+  nginx:
+    profiles: ["standalone"]
 
   postgres:
     ports: !reset []
@@ -91,6 +85,3 @@ services:
       MINIO_ACCESS_KEY: ${MINIO_ACCESS_KEY}
       MINIO_SECRET_KEY: ${MINIO_SECRET_KEY}
       MINIO_BUCKET: ${MINIO_BUCKET:-turkmuhendisi}
-
-  cdn:
-    profiles: ["dev-only"]

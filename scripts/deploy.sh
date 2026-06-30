@@ -17,14 +17,18 @@ fi
 if [[ ! -f .env ]]; then
   echo "Hata: .env dosyası bulunamadı."
   echo "  cp .env.production.example .env"
-  echo "  nano .env   # şifreleri güncelleyin"
+  echo "  nano .env"
   exit 1
 fi
 
-if [[ ! -f "$ROOT/infra/certbot/conf/live/turkmuhendisi.com/fullchain.pem" ]]; then
+if [[ ! -f /etc/letsencrypt/live/turkmuhendisi.com/fullchain.pem ]]; then
   echo "Hata: SSL sertifikası bulunamadı."
-  echo "  Önce DNS kayıtlarını sunucuya yönlendirin, sonra:"
-  echo "  ./cert-init"
+  echo ""
+  echo "Paylaşımlı sunucu kurulum sırası:"
+  echo "  1. sudo ./scripts/nginx-host-install.sh acme"
+  echo "  2. ./cert-init"
+  echo "  3. sudo ./scripts/nginx-host-install.sh"
+  echo "  4. ./deploy"
   exit 1
 fi
 
@@ -39,6 +43,11 @@ $COMPOSE up -d --remove-orphans
 
 echo "==> Durum"
 $COMPOSE ps
+
+if [[ -f /etc/nginx/conf.d/turkmuhendisi.conf ]]; then
+  echo "==> Host nginx yeniden yükleniyor"
+  sudo nginx -t && sudo systemctl reload nginx
+fi
 
 echo ""
 echo "Deploy tamamlandı."

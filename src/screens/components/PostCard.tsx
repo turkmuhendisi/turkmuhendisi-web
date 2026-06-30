@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import CmsImage from "@/src/components/CmsImage";
 
 interface PostCardProps {
   id: string;
@@ -16,7 +17,11 @@ const PostCard = ({ id, title, description, image, category, readTime, date }: P
     <Link href={`/yazilar/${id}`} className="block h-full group">
       <div className="h-full bg-zinc-950 border border-white/10 rounded-2xl overflow-hidden flex flex-col hover:border-white/20 transition-colors">
         <div className="relative h-40 border-b border-white/5 overflow-hidden">
-          <img src={image} alt={title} className="w-full h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity" />
+          <CmsImage
+            src={image}
+            alt={title}
+            className="h-full object-cover opacity-80 group-hover:opacity-90 transition-opacity"
+          />
           <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 to-transparent" />
         </div>
 

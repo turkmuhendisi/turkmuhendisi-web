@@ -6,6 +6,8 @@ import {
   type ContentDto,
 } from "@/src/repositories/content.repository";
 
+import { toIsoDate } from "@/src/lib/post-dates";
+
 function mapDbToPost(item: ContentDto): Post {
   return {
     id: item.id,
@@ -16,6 +18,7 @@ function mapDbToPost(item: ContentDto): Post {
     category: item.category,
     readTime: "5 min read",
     date: item.updatedAt,
+    modifiedAt: item.modifiedAt,
     author: "Samet Berkant Koca",
     authorImage: "https://avatars.githubusercontent.com/u/74829377?v=4",
   };
@@ -45,7 +48,13 @@ async function fetchPublishedFromDb(): Promise<Post[]> {
 export async function getAllPosts(): Promise<Post[]> {
   const dbPosts = await fetchPublishedFromDb();
   const staticIds = new Set(staticPosts.map((post) => post.id));
-  const merged = [...dbPosts.filter((post) => !staticIds.has(post.id)), ...staticPosts];
+  const merged = [
+    ...dbPosts.filter((post) => !staticIds.has(post.id)),
+    ...staticPosts.map((post) => ({
+      ...post,
+      modifiedAt: post.modifiedAt ?? toIsoDate(post.date),
+    })),
+  ];
 
   return merged.sort((a, b) => parseDate(b.date) - parseDate(a.date));
 }

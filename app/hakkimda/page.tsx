@@ -1,4 +1,6 @@
 import { buildMetadata } from "@/src/lib/metadata";
+import JsonLd from "@/src/components/JsonLd";
+import { buildPersonJsonLd } from "@/src/lib/json-ld";
 import AboutPage from "@/src/screens/about-page/AboutPage";
 
 export const metadata = buildMetadata({
@@ -13,5 +15,10 @@ export const metadata = buildMetadata({
 });
 
 export default function Page() {
-  return <AboutPage />;
+  return (
+    <>
+      <JsonLd data={buildPersonJsonLd()} />
+      <AboutPage />
+    </>
+  );
 }

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ClientChrome from "@/src/next/ClientChrome";
+import JsonLd from "@/src/components/JsonLd";
 import { DOMAIN_CONFIG } from "@/src/config/site";
+import { buildWebsiteJsonLd } from "@/src/lib/json-ld";
 
 export const metadata: Metadata = {
   title: "Türkmühendisi",
@@ -33,6 +35,7 @@ export default function RootLayout({
   return (
     <html lang="tr">
       <body>
+        <JsonLd data={buildWebsiteJsonLd()} />
         <ClientChrome />
         {children}
       </body>

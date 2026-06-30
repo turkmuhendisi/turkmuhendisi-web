@@ -11,6 +11,7 @@ export interface Post {
   category: string;
   readTime: string;
   date: string;
+  modifiedAt?: string;
   author: string;
   authorImage?: string;
 }

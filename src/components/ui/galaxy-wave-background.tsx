@@ -19,7 +19,7 @@ function SplineScene() {
 
 export function GalaxyWaveBackground() {
   return (
-    <div className="absolute inset-0 overflow-hidden">
+    <div className="spline-background absolute inset-0 overflow-hidden">
       <Suspense fallback={<div className="absolute inset-0 bg-black" />}>
         <SplineScene />
       </Suspense>

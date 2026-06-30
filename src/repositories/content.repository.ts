@@ -12,6 +12,7 @@ export interface ContentDto {
   content: string;
   status: "draft" | "published";
   updatedAt: string;
+  modifiedAt: string;
 }
 
 function toDto(item: ContentItem): ContentDto {
@@ -24,6 +25,7 @@ function toDto(item: ContentItem): ContentDto {
     content: item.content,
     status: item.status,
     updatedAt: item.updatedAt.toLocaleDateString("tr-TR"),
+    modifiedAt: item.updatedAt.toISOString(),
   };
 }
 

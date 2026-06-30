@@ -9,3 +9,14 @@ body {
   margin: 0;
   background: #000;
 }
+
+/* Spline "Built with Spline" watermark */
+.spline-background a,
+.spline-background button,
+.spline-background [class*="watermark"],
+.spline-background [class*="logo"] {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

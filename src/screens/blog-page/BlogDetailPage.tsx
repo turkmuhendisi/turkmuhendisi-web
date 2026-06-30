@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa6";
+import CmsImage from "@/src/components/CmsImage";
 import type { Post } from "@/src/data/posts";
 import { BentoCard } from "@/src/components/ui/bento-card";
 
@@ -32,7 +33,7 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white pt-28 pb-20">
+    <article className="min-h-screen bg-black text-white pt-28 pb-20">
       <div className="max-w-7xl mx-auto px-6">
         <Link
           href="/yazilar"
@@ -59,7 +60,7 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
                   <span className="text-gray-700">•</span>
                   <span>{post.category}</span>
                   <span className="text-gray-700">•</span>
-                  <span>{post.date}</span>
+                  <time dateTime={post.modifiedAt ?? post.date}>{post.date}</time>
                   <span className="text-gray-700">•</span>
                   <div className="flex items-center gap-1">
                     <Clock className="w-3.5 h-3.5" />
@@ -67,8 +68,14 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
                   </div>
                 </div>
 
-                <div className="rounded-xl overflow-hidden mb-8 border border-white/5">
-                  <img src={post.image} alt={post.title} className="w-full h-auto max-h-[420px] object-cover opacity-90" />
+                <div className="rounded-xl overflow-hidden mb-8 border border-white/5 relative h-[420px]">
+                  <CmsImage
+                    src={post.image}
+                    alt={post.title}
+                    className="object-cover opacity-90 w-full h-full"
+                    sizes="(max-width: 1024px) 100vw, 66vw"
+                    priority
+                  />
                 </div>
 
                 <div
@@ -103,11 +110,12 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
                     key={relatedPost.id}
                     className="group flex gap-3 items-center"
                   >
-                    <div className="w-16 h-14 rounded-lg overflow-hidden shrink-0 border border-white/10">
-                      <img
+                    <div className="relative w-16 h-14 rounded-lg overflow-hidden shrink-0 border border-white/10">
+                      <CmsImage
                         src={relatedPost.image}
                         alt={relatedPost.title}
-                        className="w-full h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        className="h-full object-cover opacity-80 group-hover:opacity-100 transition-opacity"
+                        sizes="64px"
                       />
                     </div>
                     <div>
@@ -123,7 +131,7 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
           </div>
         </div>
       </div>
-    </div>
+    </article>
   );
 };
 

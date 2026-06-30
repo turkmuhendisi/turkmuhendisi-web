@@ -19,7 +19,9 @@ if ! command -v nginx &>/dev/null; then
   exit 1
 fi
 
-mkdir -p /var/www/certbot
+mkdir -p /var/www/certbot /etc/letsencrypt/renewal-hooks/deploy
+cp "$ROOT/infra/certbot/reload-nginx.sh" /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
+chmod +x /etc/letsencrypt/renewal-hooks/deploy/reload-nginx.sh
 
 case "$MODE" in
   acme)
@@ -28,7 +30,7 @@ case "$MODE" in
     ;;
   full)
     if [[ ! -f /etc/letsencrypt/live/turkmuhendisi.com/fullchain.pem ]]; then
-      echo "Hata: SSL sertifikası bulunamadı. Önce ./cert-init çalıştırın."
+      echo "Hata: SSL sertifikası bulunamadı. Önce ./cert-init-cloudflare çalıştırın."
       exit 1
     fi
     cp "$ROOT/infra/nginx/host/turkmuhendisi.conf" /etc/nginx/conf.d/turkmuhendisi.conf

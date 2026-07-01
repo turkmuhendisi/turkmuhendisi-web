@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const techCategories = [
   {
     title: "Backend",
@@ -30,33 +26,16 @@ const TechStackSection = () => {
     <section className="py-24 bg-black relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="mb-16 md:text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-white"
-          >
-            Kullandığım Teknolojiler
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-4 text-gray-400 max-w-2xl mx-auto text-lg"
-          >
+          <h2 className="text-3xl md:text-5xl font-bold text-white">Kullandığım Teknolojiler</h2>
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-lg">
             Proje ihtiyacına göre doğru aracı seçen, uçtan uca üretim yapabilen bir yığın.
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {techCategories.map((category, index) => (
-            <motion.div
+          {techCategories.map((category) => (
+            <div
               key={category.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
               className="bg-white/5 border border-white/10 rounded-2xl p-6"
             >
               <h3 className="text-white font-semibold mb-4">{category.title}</h3>
@@ -70,7 +49,7 @@ const TechStackSection = () => {
                   </span>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

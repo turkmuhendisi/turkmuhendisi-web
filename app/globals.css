@@ -10,7 +10,73 @@ body {
   background: #000;
 }
 
-/* Spline "Built with Spline" watermark */
+/* Hero — subtle fade on desktop only; no scroll-triggered motion */
+@media (min-width: 769px) {
+  .hero-content {
+    animation: hero-fade-in 0.6s ease-out both;
+  }
+}
+
+@keyframes hero-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Partner strip — CSS marquee (GPU-friendly transform) */
+@keyframes partner-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-marquee {
+  animation: partner-marquee 40s linear infinite;
+  will-change: transform;
+}
+
+/* Scroll hint dot */
+@keyframes scroll-hint-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(12px);
+    opacity: 1;
+  }
+}
+
+.scroll-hint-dot {
+  animation: scroll-hint-bounce 2s ease-in-out infinite;
+}
+
+/* Disable decorative motion on mobile and for reduced-motion preference */
+@media (max-width: 768px), (prefers-reduced-motion: reduce) {
+  .hero-content {
+    animation: none;
+  }
+
+  .partner-marquee {
+    animation: none;
+    transform: none;
+    will-change: auto;
+  }
+
+  .scroll-hint-dot {
+    animation: none;
+  }
+}
+
 .spline-background a,
 .spline-background button,
 .spline-background [class*="watermark"],

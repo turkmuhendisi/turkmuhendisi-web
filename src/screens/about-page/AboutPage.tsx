@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { MapPin, Mail, FileText, Briefcase, Code, Monitor, Wrench, Lightbulb, Award, Globe, Database, Server } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import { PageSectionHeader } from "@/src/components/ui/page-section-header";
@@ -176,13 +175,9 @@ const AboutPage = () => {
               <h3 className="text-base font-semibold text-white">Teknik Yetenekler</h3>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {techCategories.map((cat, index) => (
-                <motion.div
+              {techCategories.map((cat) => (
+                <div
                   key={cat.title}
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05 }}
                   className="bg-white/[0.03] border border-white/5 rounded-xl p-4"
                 >
                   <div className="flex items-center gap-2 mb-3">
@@ -199,7 +194,7 @@ const AboutPage = () => {
                       </span>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </BentoCard>

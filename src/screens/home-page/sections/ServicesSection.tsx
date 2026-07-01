@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import {
   Smartphone,
   Cloud,
@@ -52,23 +51,10 @@ const ServicesSection = () => {
     <section className="py-24 bg-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="mb-12 md:mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-white"
-          >
-            Ürettiğim Çözümler
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-4 text-gray-400 max-w-2xl text-lg"
-          >
+          <h2 className="text-3xl md:text-5xl font-bold text-white">Ürettiğim Çözümler</h2>
+          <p className="mt-4 text-gray-400 max-w-2xl text-lg">
             Fikirden canlı sisteme uzanan, ölçeklenebilir ve sürdürülebilir mühendislik çözümleri.
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

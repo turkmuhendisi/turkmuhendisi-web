@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Compass, Layers, Shield, Code2 } from "lucide-react";
 
 const principles = [
@@ -18,8 +15,7 @@ const principles = [
   },
   {
     title: "Ölçeklenebilirlik ve Güvenlik",
-    description:
-      "Trafik artışına hazır, güvenli ve gözlemlenebilir altyapılar kurarım.",
+    description: "Trafik artışına hazır, güvenli ve gözlemlenebilir altyapılar kurarım.",
     icon: Shield,
   },
   {
@@ -37,11 +33,7 @@ const EngineeringApproachSection = () => {
 
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
+          <div>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Nasıl Düşünüyorum,
               <br />
@@ -55,16 +47,12 @@ const EngineeringApproachSection = () => {
               doğru problemi doğru mimariyle çözmektir. Geçmişin birikiminden güç alır, bugünün
               teknolojileriyle geleceğe kalıcı eserler bırakırım.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {principles.map((principle, index) => (
-              <motion.div
+            {principles.map((principle) => (
+              <div
                 key={principle.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08 }}
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors"
               >
                 <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-4">
@@ -72,7 +60,7 @@ const EngineeringApproachSection = () => {
                 </div>
                 <h3 className="text-white font-semibold mb-2">{principle.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{principle.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

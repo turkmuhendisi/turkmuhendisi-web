@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { motion } from "framer-motion";
 import { Search, Filter } from "lucide-react";
 import type { Post } from "@/src/data/posts";
 import { getCategories, searchPosts } from "@/src/lib/posts";
@@ -27,7 +26,7 @@ const BlogPage = ({ initialPosts }: BlogPageProps) => {
           description="Mimari kararlar, üretim deneyimleri ve öğrendiklerim."
         />
 
-        <BentoCard className="mb-8 p-4 md:p-5" delay={0.1}>
+        <BentoCard className="mb-8 p-4 md:p-5">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 h-4 w-4" />
@@ -62,15 +61,8 @@ const BlogPage = ({ initialPosts }: BlogPageProps) => {
           </BentoCard>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {filteredPosts.map((post, index) => (
-              <motion.div
-                key={post.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="h-full"
-              >
+            {filteredPosts.map((post) => (
+              <div key={post.id} className="h-full">
                 <PostCard
                   id={post.id}
                   title={post.title}
@@ -80,7 +72,7 @@ const BlogPage = ({ initialPosts }: BlogPageProps) => {
                   readTime={post.readTime}
                   date={post.date}
                 />
-              </motion.div>
+              </div>
             ))}
           </div>
         )}

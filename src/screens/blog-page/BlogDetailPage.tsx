@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa6";
@@ -44,8 +43,8 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2 space-y-4">
-            <BentoCard className="p-6 md:p-8" delay={0}>
-              <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
+            <BentoCard className="p-6 md:p-8">
+              <div>
                 <h1 className="text-2xl md:text-4xl font-bold text-white mb-5 leading-tight">{post.title}</h1>
 
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-gray-500 text-sm mb-6">
@@ -82,12 +81,12 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
                   className="prose prose-invert prose-sm md:prose-base max-w-none text-gray-300"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
-              </motion.div>
+              </div>
             </BentoCard>
           </div>
 
           <div className="space-y-4">
-            <BentoCard className="p-5" delay={0.1}>
+            <BentoCard className="p-5">
               <h3 className="text-sm font-semibold text-white mb-4">Paylaş</h3>
               <div className="flex flex-wrap gap-2">
                 {[FaLinkedin, FaTwitter, FaFacebook].map((Icon, i) => (
@@ -101,7 +100,7 @@ const BlogDetailPage = ({ post, relatedPosts }: BlogDetailPageProps) => {
               </div>
             </BentoCard>
 
-            <BentoCard className="p-5" delay={0.15}>
+            <BentoCard className="p-5">
               <h3 className="text-sm font-semibold text-white mb-4">İlgili Yazılar</h3>
               <div className="space-y-4">
                 {relatedPosts.map((relatedPost) => (

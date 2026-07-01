@@ -1,6 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
 import { Search, PenTool, Code2, Rocket, LineChart } from "lucide-react";
 
 const steps = [
@@ -46,33 +43,16 @@ const ProcessSection = () => {
     <section className="py-24 bg-black relative overflow-hidden border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="mb-16 md:text-center">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-5xl font-bold text-white"
-          >
-            Fikirden Canlı Sisteme
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="mt-4 text-gray-400 max-w-2xl mx-auto text-lg"
-          >
+          <h2 className="text-3xl md:text-5xl font-bold text-white">Fikirden Canlı Sisteme</h2>
+          <p className="mt-4 text-gray-400 max-w-2xl mx-auto text-lg">
             Şeffaf, planlı ve ölçülebilir bir geliştirme süreci.
-          </motion.p>
+          </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-5 gap-6">
-          {steps.map((item, index) => (
-            <motion.div
+          {steps.map((item) => (
+            <div
               key={item.step}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.08 }}
               className="relative bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/10 transition-colors"
             >
               <div className="flex items-center justify-between mb-4">
@@ -84,7 +64,7 @@ const ProcessSection = () => {
               <span className="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded-full">
                 Çıktı: {item.output}
               </span>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

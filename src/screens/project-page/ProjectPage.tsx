@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { FaGithub } from "react-icons/fa6";
 import { ArrowRight, Star } from "lucide-react";
 import { PageSectionHeader } from "@/src/components/ui/page-section-header";
@@ -64,15 +63,8 @@ const ProjectPage = () => {
             </div>
           </BentoCard>
 
-          {otherProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 + index * 0.05 }}
-              className="h-full"
-            >
+          {otherProjects.map((project) => (
+            <div key={project.id} className="h-full">
               <ProjectCard
                 id={project.id}
                 title={project.title}
@@ -83,7 +75,7 @@ const ProjectPage = () => {
                 github={project.github}
                 live={project.live}
               />
-            </motion.div>
+            </div>
           ))}
 
           <BentoCard className="md:col-span-3" delay={0.3}>
